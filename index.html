@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Luxe Brand Startup</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+</head>
+
+<body>
+
+<nav>
+<h2>Luxe Brand</h2>
+<button onclick="logout()">Logout</button>
+</nav>
+
+<!-- AUTH -->
+<section id="auth">
+<h2>Login / Register</h2>
+
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="register()">Register</button>
+<button onclick="login()">Login</button>
+</section>
+
+<!-- SHOP -->
+<section id="shop" style="display:none">
+<h2>Collection</h2>
+<div id="products"></div>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" style="display:none">
+<h2>Admin Upload</h2>
+
+<input id="pName" placeholder="Product Name">
+<input id="pPrice" placeholder="Price">
+<input id="pImage" placeholder="Image URL">
+
+<button onclick="uploadProduct()">Upload</button>
+</section>
+
+<!-- AI CHAT -->
+<div id="chat">
+<div id="chatBody">Hi 👋 I'm Luxe AI stylist.</div>
+<input id="chatInput">
+<button onclick="askAI()">Send</button>
+</div>
+
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
