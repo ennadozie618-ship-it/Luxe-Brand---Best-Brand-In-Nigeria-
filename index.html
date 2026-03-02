@@ -1,60 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Luxe Brand Startup</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Luxe Brand | Premium Fashion Owerri</title>
 
 <link rel="stylesheet" href="style.css">
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <nav>
 <h2>Luxe Brand</h2>
-<button onclick="logout()">Logout</button>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<div class="cart-icon" onclick="toggleCart()">
+🛒 <span id="cart-count">0</span>
+</div>
 </nav>
 
-<!-- AUTH -->
-<section id="auth">
-<h2>Login / Register</h2>
-
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
-
-<button onclick="register()">Register</button>
-<button onclick="login()">Login</button>
+<!-- HERO -->
+<section id="home" class="hero">
+<div class="hero-content fade">
+<h1>Luxury Fashion Made For You</h1>
+<p>Premium clothing crafted for elegance and confidence.</p>
+<button onclick="scrollToSection('gallery')">Shop Collection</button>
+</div>
 </section>
 
-<!-- SHOP -->
-<section id="shop" style="display:none">
-<h2>Collection</h2>
-<div id="products"></div>
-</section>
+<!-- SERVICES -->
+<section id="services" class="fade">
+<h2 class="center">Our Services</h2>
 
-<!-- ADMIN -->
-<section id="admin" style="display:none">
-<h2>Admin Upload</h2>
+<div class="cards">
 
-<input id="pName" placeholder="Product Name">
-<input id="pPrice" placeholder="Price">
-<input id="pImage" placeholder="Image URL">
-
-<button onclick="uploadProduct()">Upload</button>
-</section>
-
-<!-- AI CHAT -->
-<div id="chat">
-<div id="chatBody">Hi 👋 I'm Luxe AI stylist.</div>
-<input id="chatInput">
-<button onclick="askAI()">Send</button>
+<div class="card">
+<h3>Custom Outfit</h3>
+<p>Tailored fashion pieces designed perfectly for you.</p>
 </div>
 
-<script src="firebase.js"></script>
-<script src="app.js"></script>
+<div class="card">
+<h3>Ready To Wear</h3>
+<p>Luxury outfits available instantly.</p>
+</div>
+
+<div class="card">
+<h3>Style Consultation</h3>
+<p>Professional wardrobe and fashion advice.</p>
+</div>
+
+</div>
+</section>
+
+<!-- SHOP / GALLERY -->
+<section id="gallery" class="fade">
+<h2 class="center">Featured Collection</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d">
+<h3>Luxury Dress</h3>
+<p>₦45,000</p>
+<button onclick="addToCart('Luxury Dress',45000)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b">
+<h3>Elegant Suit</h3>
+<p>₦70,000</p>
+<button onclick="addToCart('Elegant Suit',70000)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b">
+<h3>Designer Outfit</h3>
+<p>₦55,000</p>
+<button onclick="addToCart('Designer Outfit',55000)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="fade">
+<h2 class="center">About Luxe Brand</h2>
+<p class="about-text">
+Luxe Brand is a premium fashion house based in Owerri, Imo State,
+Nigeria, delivering modern luxury clothing designed for confident
+individuals who value quality and style.
+</p>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="fade testimonials">
+<h2 class="center">Client Reviews</h2>
+
+<div class="cards">
+<div class="card">⭐⭐⭐⭐⭐ Amazing quality and delivery.</div>
+<div class="card">⭐⭐⭐⭐⭐ The best fashion brand in Owerri.</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="fade">
+<h2 class="center">Contact Us</h2>
+
+<form>
+<input placeholder="Full Name" required>
+<input type="email" placeholder="Email">
+<textarea placeholder="Message"></textarea>
+<button>Send Message</button>
+</form>
+
+<div class="map">
+<iframe
+src="https://maps.google.com/maps?q=Owerri&t=&z=13&ie=UTF8&iwloc=&output=embed">
+</iframe>
+</div>
+</section>
+
+<footer>
+© 2026 Luxe Brand — Premium Fashion
+</footer>
+
+<!-- CART PANEL -->
+<div id="cart-panel">
+<h3>Your Cart</h3>
+<ul id="cart-items"></ul>
+<p id="total"></p>
+<button onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/2340000000000" target="_blank">💬</a>
+
+<!-- CHATBOT -->
+<div class="chat-toggle" onclick="toggleChat()">AI Chat</div>
+
+<div class="chatbot" id="chatbot">
+<div class="chat-header">Luxe AI Assistant</div>
+<div class="chat-body" id="chatBody">Hello 👋 Ask about prices or orders.</div>
+
+<div class="chat-input">
+<input id="chatInput">
+<button onclick="sendMessage()">Send</button>
+</div>
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
